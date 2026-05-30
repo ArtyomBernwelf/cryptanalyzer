@@ -16,10 +16,12 @@ public class Main {
         System.out.println("===========================================");
 
         while (true) {
-            System.out.println("\n1. Шифрование");
-            System.out.println("2. Расшифровка с ключом");
-            System.out.println("3. Brute force");
-            System.out.println("4. Статистический анализ");
+            System.out.println("1. Шифрование текста (из файла)");
+            System.out.println("2. Расшифровка с ключом (из файла)");
+            System.out.println("3. Расшифровка brute force (из файла)");
+            System.out.println("4. Расшифровка статистическим анализом (из файла)");
+            System.out.println("5. Шифрование текста (ввод с консоли)");
+            System.out.println("6. Расшифровка текста (ввод с консоли)");
             System.out.println("0. Выход");
             System.out.print("Выберите режим: ");
 
@@ -71,6 +73,39 @@ public class Main {
                     System.out.print("Файл с примером текста: ");
                     sampleFile = scanner.nextLine();
                     cipher.statisticalAnalysis(inputFile, outputFile, sampleFile);
+                    break;
+                case 5: // Шифрование из консоли
+                    System.out.println("\n--- ШИФРОВАНИЕ ТЕКСТА ИЗ КОНСОЛИ ---");
+                    System.out.print("Введите текст для шифрования: ");
+                    String textToEncrypt = scanner.nextLine();
+                    System.out.print("Введите ключ (сдвиг от 0 до 39): ");
+                    int encryptKey = scanner.nextInt();
+                    scanner.nextLine();
+
+                    String encryptedResult = cipher.encryptFromConsole(textToEncrypt, encryptKey);
+
+                    System.out.println("\n========== РЕЗУЛЬТАТ ==========");
+                    System.out.println("Исходный текст: " + textToEncrypt);
+                    System.out.println("Ключ: " + encryptKey);
+                    System.out.println("Зашифрованный текст: " + encryptedResult);
+                    System.out.println("================================");
+                    break;
+
+                case 6: // Расшифровка из консоли
+                    System.out.println("\n--- РАСШИФРОВКА ТЕКСТА ИЗ КОНСОЛИ ---");
+                    System.out.print("Введите зашифрованный текст: ");
+                    String textToDecrypt = scanner.nextLine();
+                    System.out.print("Введите ключ (сдвиг): ");
+                    int decryptKey = scanner.nextInt();
+                    scanner.nextLine();
+
+                    String decryptedResult = cipher.decryptFromConsole(textToDecrypt, decryptKey);
+
+                    System.out.println("\n========== РЕЗУЛЬТАТ ==========");
+                    System.out.println("Зашифрованный текст: " + textToDecrypt);
+                    System.out.println("Ключ: " + decryptKey);
+                    System.out.println("Расшифрованный текст: " + decryptedResult);
+                    System.out.println("================================");
                     break;
 
                 default:
