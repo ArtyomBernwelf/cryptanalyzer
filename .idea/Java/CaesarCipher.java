@@ -148,4 +148,43 @@ public class CaesarCipher {
 
         System.out.println("Статистический анализ завершен! Найден ключ: " + bestShift);
     }
+    // НОВЫЙ МЕТОД: Шифрование текста из консоли
+    public String encryptFromConsole(String text, int key) {
+        // Проверяем ключ
+        if (!validator.isValidKey(key, ALPHABET)) {
+            System.out.println("Ошибка: неверный ключ!");
+            return null;
+        }
+
+        // Приводим текст к нижнему регистру
+        String lowerText = text.toLowerCase();
+
+        // Создаем объект Cipher
+        Cipher cipher = new Cipher(ALPHABET);
+
+        // Шифруем текст
+        String encryptedText = cipher.encrypt(lowerText, key);
+
+        return encryptedText;
+    }
+
+    // НОВЫЙ МЕТОД: Расшифровка текста из консоли
+    public String decryptFromConsole(String encryptedText, int key) {
+        // Проверяем ключ
+        if (!validator.isValidKey(key, ALPHABET)) {
+            System.out.println("Ошибка: неверный ключ!");
+            return null;
+        }
+
+        // Приводим текст к нижнему регистру
+        String lowerText = encryptedText.toLowerCase();
+
+        // Создаем объект Cipher
+        Cipher cipher = new Cipher(ALPHABET);
+
+        // Расшифровываем текст
+        String decryptedText = cipher.decrypt(lowerText, key);
+
+        return decryptedText;
+    }
 }
