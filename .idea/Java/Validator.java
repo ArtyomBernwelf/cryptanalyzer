@@ -38,7 +38,8 @@ public class Validator {
         if (key >= 0 && key < alphabet.length) {
             return true;
         } else {
-            System.out.println("Ошибка: ключ " + key + " недопустим. Допустимые значения: от 0 до " + (alphabet.length - 1));
+            System.out.println("Ошибка: ключ должен быть от 0 до " + (alphabet.length - 1));
+            System.out.println("Вы ввели: " + key);
             return false;
         }
     }
